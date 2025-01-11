@@ -14,16 +14,16 @@ export class TasksSchedule {
   async handleCron() {
 
     let tasks = this.getAllTasksAsPerLimit();
-   console.log(tasks,"------------------------ inside cron to handle my all tasks--------------------");
+   console.log("------------------------ inside cron to handle my all tasks--------------------");
 
     for(let i = 0; i<tasks.length; i++){
-     // console.log("staring to execute task with id: ", tasks[i]);
+     console.log("staring to execute task with id: ", tasks[i]);
       let data = await this.cacheManager.get(tasks[i]);
       console.log("Task data data is", data);
       
 
       
-     // console.log("executed task with id: ", tasks[i]);
+     console.log("executed task with id: ", tasks[i]);
       await this.cacheManager.del(tasks[i]);
       delete tasks[i];
     }
