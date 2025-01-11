@@ -1,9 +1,17 @@
 import { Injectable } from '@nestjs/common';
-let task = [];
 
 @Injectable()
 export class TaskService {
-  makeEntry(NewTask) {
-    console.log(NewTask);
+  task : Array<any>;
+
+  constructor(){
+    this.task = [];
+  }
+  makeEntry(NewTask : any) {
+    let temp = [];
+    //console.log("in service ", NewTask);
+    temp.push(NewTask);
+    this.task.push(temp);
+    console.log("current tasks in system are", NewTask);
   }
 }

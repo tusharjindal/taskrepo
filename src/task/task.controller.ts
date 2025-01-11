@@ -10,11 +10,13 @@ export class TaskController{
   @Post('/makeTask')
   makeASchedule(@Req() request: Request) {
     try{
-        console.log(request.body);
-        //this.taskService.makeEntry({id : uuidv4(), duration : duration, listOfDependency : listOfDependency});
+       // console.log(request.body);
+        if(!request.body.duration || !request.body.listOfDependency){
+          console.log("bad request");
+          return;
+        }
+        this.taskService.makeEntry({id : uuidv4(), duration : request.body.duration, listOfDependency : request.body.listOfDependency});
     }catch(error){
-
-        //can log error using logger like winston, pino
         console.log(error); 
     }
   }
